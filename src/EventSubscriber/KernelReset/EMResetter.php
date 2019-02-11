@@ -11,7 +11,7 @@ class EMResetter implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            'kernel.reset' => 'onKernelReset'
+            'kernel.reset' => 'onKernelReset',
         ];
     }
 

@@ -19,4 +19,12 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
         ]);
     }
+
+    /**
+     * @Route("/testing", name="default_testing")
+     */
+    public function testing(): Response
+    {
+
+    }
 }
