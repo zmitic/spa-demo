@@ -7,16 +7,19 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                Yo
+                <a href="{{ path('default') }}">Back</a>
             </div>
+
             <div class="col-sm-6">
-                Here
+                <a href="{{ path('default_testing') }}">Go to outlet</a>
             </div>
         </div>
 
 
         <div class="row" style="border: 1px solid red">
-            {{ outlet() }}
+            {% filter outlet %}
+                {{ var }}
+            {% endfilter %}
         </div>
 
     </div>
