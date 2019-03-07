@@ -1,26 +1,30 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello DefaultController!{% endblock %}
-
-{% block body %}
-
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <a href="{{ path('default') }}">Back</a>
-            </div>
-
-            <div class="col-sm-6">
-                <a href="{{ path('default_testing') }}">Go to outlet</a>
-            </div>
-        </div>
-
-
-        <div class="row" style="border: 1px solid red">
-            {% filter outlet %}
-                {{ var }}
-            {% endfilter %}
-        </div>
-
+<div class="row">
+    <div class="col-sm-12">
+        <nav>
+            <a href="{{ path('default') }}">Listing</a>
+        </nav>
+        <hr>
     </div>
-{% endblock %}
+
+    <div class="col-sm-3">
+        <ul class="list-unstyled">
+            <li>Random number: {{ random() }}</li>
+            <li>
+                <hr>
+            </li>
+            {% for car in cars %}
+                <li>
+                    <a href="{{ path('car_detailed', {'id': car.id}) }}">{{ car }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="col-sm-9">
+        {% filter outlet %}
+            Please select car on the left
+        {% endfilter %}
+    </div>
+</div>
+
+

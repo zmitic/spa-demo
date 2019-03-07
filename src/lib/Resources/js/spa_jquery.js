@@ -7,24 +7,39 @@ $(document).on('click', 'a', function () {
         return;
     }
 
-    console.log(history);
+    let activeOutlet = $('outlet[active]').first();
+    if (!activeOutlet.length) {
+        return;
+    }
+    console.log(activeOutlet.attr('route-name'));
 
     $.ajax({
         url: href,
+        headers: {
+            'active' : activeOutlet.attr('route-name')
+        },
         cache: true
     })
         .done((data, textStatus, jqXHR) => {
-            let spaParent = jqXHR.getResponseHeader('spa_outlet');
+            if (!data) {
+                console.log('No changes');
+                return;
+            }
+            let spaParent = jqXHR.getResponseHeader('spa-outlet');
             let outletDom = $(`outlet[route-name="${spaParent}"]`).first();
             if (!outletDom.length) {
-                alert('No outlet: ' + spaParent);
-                return false;
+                outletDom = $(`outlet[route-name="root"]`).first();
+            }
+
+            if (!outletDom.length) {
+                console.log('No outlet: ' + spaParent);
+                return;
             }
 
             // history.pushState(null, null, currentRouteName);
-            console.log(jqXHR.getResponseHeader('spa_route'));
+            // console.log(jqXHR.getResponseHeader('spa-route'));
             outletDom.html(data);
-            history.replaceState(null, null, href);
+            // history.replaceState(null, null, href);
         })
         .always(() => {
         })

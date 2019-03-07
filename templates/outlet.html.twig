@@ -1,0 +1,4 @@
+
+<outlet route-name="{{ route_name }}" {% if route_name is same as (active_route_name) %}active{% endif %}>
+    {{ render(path(route_name, route_params)) }}
+</outlet>

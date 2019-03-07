@@ -12,7 +12,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ConfigurationAnnotation;
 class Outlet extends ConfigurationAnnotation
 {
     /**
-     * @var string
+     * @required
+     *
+     * @var string|null
      */
     private $parent;
 
@@ -26,12 +28,12 @@ class Outlet extends ConfigurationAnnotation
         return false;
     }
 
-    public function setParent(string $parent): void
+    public function setParent(?string $parent): void
     {
         $this->parent = $parent;
     }
 
-    public function getParent(): string
+    public function getParent(): ?string
     {
         return $this->parent;
     }

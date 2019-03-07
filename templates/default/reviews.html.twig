@@ -1,0 +1,14 @@
+<ul class="list-unstyled">
+    {% for review in reviews %}
+        <li>
+            <div class="card">
+                <div class="card-header">
+                    Quote
+                </div>
+                <div class="card-body">
+                    {{ review.review }}
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
