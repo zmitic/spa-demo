@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Car;
 use App\lib\Annotation\Outlet;
 use App\Repository\CarRepository;
+use App\Repository\CarReviewRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -42,10 +43,16 @@ class CarController extends AbstractController
      *
      * @Outlet(parent="car_detailed")
      */
-    public function reviews(Car $car): Response
+    public function reviews($id, CarReviewRepository $repository): Response
     {
+        $reviews = $repository->createQueryBuilder('o')
+            ->addSelect('car')
+            ->leftJoin('o.car', 'car')
+            ->where('IDENTITY(o.car) = :car_id')->setParameter('car_id', $id)
+            ->getQuery()->getResult();
+
         return $this->render('default/reviews.html.twig', [
-            'reviews' => $car->getReviews(),
+            'reviews' => $reviews,
         ]);
     }
 }

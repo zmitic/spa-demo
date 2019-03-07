@@ -3,7 +3,7 @@
         <li>
             <div class="card">
                 <div class="card-header">
-                    Quote
+                    Quote {{ random() }}
                 </div>
                 <div class="card-body">
                     {{ review.review }}
@@ -11,4 +11,8 @@
             </div>
         </li>
     {% endfor %}
+
+    {% filter outlet %}
+qqq
+    {% endfilter %}
 </ul>

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\lib\Twig;
 
+use function sprintf;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Environment;
@@ -30,18 +31,22 @@ class OutletFilter extends AbstractExtension
             return $html;
         }
 
+        $currentRoute = $request->attributes->get('_route');
         $spaRoutes = $request->attributes->get('spa-routes', []);
         if (!$spaRoutes) {
-            return $html;
+            return sprintf('<outlet-inner route-name="%s">%s</outlet-inner>', $currentRoute, $html);
         }
         ['path' => $routeName, 'params' => $params] = array_shift($spaRoutes);
         $request->attributes->set('spa-routes', $spaRoutes);
+        dump($currentRoute, $routeName);
 
-        return $this->twig->render('outlet.html.twig', [
+        $html = $this->twig->render('outlet.html.twig', [
             'route_name' => $routeName,
             'route_params' => $params,
-            'active_route_name' => $request->attributes->get('_route'),
+            'active_route_name' => $currentRoute,
         ]);
+
+        return $html;
     }
 
     public function getFilters(): array

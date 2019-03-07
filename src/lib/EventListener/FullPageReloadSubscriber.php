@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\lib\EventListener;
 
 use App\lib\Service\TreeBuilder;
+use function array_merge;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -50,7 +51,7 @@ class FullPageReloadSubscriber implements EventSubscriberInterface
         }
 
         $request->attributes->set('spa-routes', $routes);
-        $html = $this->twig->render('root.html.twig');
+        $html = $this->twig->render('base.html.twig');
 
         $response = new Response($html);
         $event->setResponse($response);

@@ -11,8 +11,9 @@ RNG: {{ random() }}
             <a href="{{ path('car_detailed', {'id': car.id}) }}">Detailed</a>
             <a href="{{ path('car_reviews', {'id': car.id}) }}">Reviews</a>
         </nav>
-        {% filter outlet %}
 
+
+        {% filter outlet %}
             <div class="card">
                 <div class="card-header">
                     Description of {{ car }}

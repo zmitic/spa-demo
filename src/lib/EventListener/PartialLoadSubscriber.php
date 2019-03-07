@@ -59,9 +59,26 @@ class PartialLoadSubscriber implements EventSubscriberInterface
 
         $routes = iterator_to_array($tree);
         $routes = array_reverse($routes);
-        dump('From: '.$activeRouteName, 'To: '.$routeToJump, $routes);
-        $event->setResponse(new Response());
+//        dump('From: '.$activeRouteName, 'To: '.$routeToJump, $routes);
 
+        $filteredRoutes = [];
+        $found = false;
+        foreach ($routes as $route) {
+            if ($found) {
+                $filteredRoutes[] = $route;
+            }
+            if ($route['path'] === $activeRouteName) {
+                $found = true;
+            }
+        }
+
+        $request->attributes->set('spa-routes', $filteredRoutes);
+
+        $html = $this->twig->render('outlet_partial.html.twig');
+        $response = new Response($html);
+        $event->setResponse($response);
+        $response->headers->set('spa-active-route', $routeToJump);
+//        dump($filteredRoutes);
         return;
         if ($this->isDownTheTree($routes, $activeRouteName, $routeToJump)) {
         }
@@ -71,7 +88,7 @@ class PartialLoadSubscriber implements EventSubscriberInterface
         }
 
         $request->attributes->set('spa-routes', $routes);
-        $html = $this->twig->render('root.html.twig');
+        $html = $this->twig->render('base.html.twig');
 
         $response = new Response($html);
         $event->setResponse($response);

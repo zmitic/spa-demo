@@ -2,10 +2,12 @@ $primary: darken(#428bca, 20%);
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
+@import '~font-awesome/scss/font-awesome';
 
 outlet {
   //border: 1px solid red;
+  display: block;
   &[active] {
-    border: 1px solid orangered;
+    //border: 1px solid orangered;
   }
 }

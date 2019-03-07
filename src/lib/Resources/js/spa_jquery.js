@@ -1,5 +1,6 @@
 const $ = require('jquery');
 
+let activeRoute = null;
 $(document).on('click', 'a', function () {
     let $a = $(this);
     let href = $a.attr('href');
@@ -7,39 +8,41 @@ $(document).on('click', 'a', function () {
         return;
     }
 
-    let activeOutlet = $('outlet[active]').first();
-    if (!activeOutlet.length) {
-        return;
+    if (!activeRoute) {
+        let activeOutlet = $('outlet[active]').first();
+        if (!activeOutlet.length) {
+            return;
+        }
+        activeRoute = activeOutlet.attr('route-name');
+        activeOutlet.removeAttr('active');
     }
-    console.log(activeOutlet.attr('route-name'));
 
     $.ajax({
         url: href,
         headers: {
-            'active' : activeOutlet.attr('route-name')
+            'active' : activeRoute
         },
         cache: true
     })
         .done((data, textStatus, jqXHR) => {
             if (!data) {
-                console.log('No changes');
+                console.error('No response');
+
                 return;
-            }
-            let spaParent = jqXHR.getResponseHeader('spa-outlet');
-            let outletDom = $(`outlet[route-name="${spaParent}"]`).first();
-            if (!outletDom.length) {
-                outletDom = $(`outlet[route-name="root"]`).first();
             }
 
+            $('outlet[active]').removeAttr('active');
+            let outletDom = $(`outlet-inner[route-name="${activeRoute}"]`).first();
             if (!outletDom.length) {
-                console.log('No outlet: ' + spaParent);
+                console.log('No outlet: ' + activeRoute);
                 return;
             }
+            activeRoute = jqXHR.getResponseHeader('spa-active-route');
 
             // history.pushState(null, null, currentRouteName);
             // console.log(jqXHR.getResponseHeader('spa-route'));
             outletDom.html(data);
-            // history.replaceState(null, null, href);
+            history.replaceState(null, null, href);
         })
         .always(() => {
         })
