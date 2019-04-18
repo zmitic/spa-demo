@@ -8,11 +8,10 @@ use function sprintf;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Environment;
-use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use function array_shift;
 
-class OutletFilter extends AbstractExtension
+class OutletFilter
 {
     private $requestStack;
 

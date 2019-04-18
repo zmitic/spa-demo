@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\EventSubscriber\KernelReset\EMResetter;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
@@ -37,6 +38,9 @@ class Kernel extends BaseKernel
         $loader->load($confDir.'/{packages}/'.$this->environment.'/**/*'.self::CONFIG_EXTS, 'glob');
         $loader->load($confDir.'/{services}'.self::CONFIG_EXTS, 'glob');
         $loader->load($confDir.'/{services}_'.$this->environment.self::CONFIG_EXTS, 'glob');
+
+        $container->getDefinition(EMResetter::class)->addTag('kernel.reset', ['method' => 'reset']);
+
     }
 
     protected function configureRoutes(RouteCollectionBuilder $routes)

@@ -1,5 +1,4 @@
-
-RNG: {{ random() }}
+{{ 'now'|date('H:i:s') }}
 <hr>
 <div class="row">
     <div class="col-sm-3">
@@ -12,8 +11,8 @@ RNG: {{ random() }}
             <a href="{{ path('car_reviews', {'id': car.id}) }}">Reviews</a>
         </nav>
 
-
         {% filter outlet %}
+
             <div class="card">
                 <div class="card-header">
                     Description of {{ car }}
@@ -22,6 +21,12 @@ RNG: {{ random() }}
                     {{ car.description }}
                 </div>
             </div>
+
+            <hr>
+            <hr>
+            <hr>
+            Outlet of detailed:
+
 
 
         {% endfilter %}

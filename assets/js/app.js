@@ -11,6 +11,6 @@ require('../css/app.scss');
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // const $ = require('jquery');
 
+require('../../vendor/htc/spa-bundle/src/Resources/public/js/htc_spa_jquery.js');
 
-require('../../src/lib/Resources/js/spa_jquery');
 

@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\lib\EventListener;
 
 use App\lib\Service\TreeBuilder;
-use function array_merge;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -14,7 +12,7 @@ use Twig\Environment;
 use function array_reverse;
 use function iterator_to_array;
 
-class FullPageReloadSubscriber implements EventSubscriberInterface
+class FullPageReloadSubscriber
 {
     private $twig;
 

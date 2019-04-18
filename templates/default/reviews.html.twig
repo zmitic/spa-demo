@@ -7,6 +7,8 @@
                 </div>
                 <div class="card-body">
                     {{ review.review }}
+
+                    <a href="{{ path('car_review_one', {'id': car.id, 'review_id': review.id}) }}">View review</a>
                 </div>
             </div>
         </li>

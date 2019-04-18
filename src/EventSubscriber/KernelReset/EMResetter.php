@@ -4,18 +4,23 @@ declare(strict_types=1);
 
 namespace App\EventSubscriber\KernelReset;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Cache\ResettableInterface;
+use Symfony\Contracts\Service\ResetInterface;
+use Symfony\WebpackEncoreBundle\Asset\EntrypointLookupInterface;
+use function var_dump;
 
-class EMResetter implements EventSubscriberInterface
+class EMResetter implements ResetInterface, ResettableInterface
 {
-    public static function getSubscribedEvents(): array
+    private $entryPointLookup;
+
+    public function __construct(EntrypointLookupInterface $entryPointLookup)
     {
-        return [
-            'kernel.reset' => 'onKernelReset',
-        ];
+        $this->entryPointLookup = $entryPointLookup;
     }
 
-    public function onKernelReset(): void
+    public function reset()
     {
+        var_dump(123);
+        $this->entryPointLookup->reset();
     }
 }

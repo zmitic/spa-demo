@@ -1,0 +1,8 @@
+htc_spa:
+    base:
+        admin:
+            prefix: '/admin'
+            template: 'admin_base.html.twig'
+        frontend:
+            prefix: '/'
+            template: 'base.html.twig'

@@ -6,7 +6,6 @@ namespace App\lib\EventListener;
 
 use App\lib\Service\TreeBuilder;
 use function dump;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -14,7 +13,7 @@ use Twig\Environment;
 use function array_reverse;
 use function iterator_to_array;
 
-class PartialLoadSubscriber implements EventSubscriberInterface
+class PartialLoadSubscriber
 {
     private $twig;
 

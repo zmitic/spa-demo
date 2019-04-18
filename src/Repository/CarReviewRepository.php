@@ -20,6 +20,4 @@ class CarReviewRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, CarReview::class);
     }
-
-
 }

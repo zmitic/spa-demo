@@ -23,7 +23,6 @@ class CarFixtures extends Fixture
                 $review = new CarReview($car, $factory->paragraph(4));
                 $manager->persist($review);
             }
-
         }
         $manager->flush();
     }

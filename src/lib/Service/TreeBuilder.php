@@ -43,7 +43,6 @@ class TreeBuilder
             $params[$pathVariable] = $request->get($pathVariable);
         }
 
-
         yield $routeName => ['path' => $routeName, 'params' => $params];
 
         $parent = $outlet->getParent();
