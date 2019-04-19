@@ -1367,12 +1367,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hitechcoding/spa-bundle.git",
-                "reference": "03033c40a318615026f09f5ec07cc1d0b668e08f"
+                "reference": "95b6b3032cfea903614e5b837ee0d8afecaea083"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hitechcoding/spa-bundle/zipball/03033c40a318615026f09f5ec07cc1d0b668e08f",
-                "reference": "03033c40a318615026f09f5ec07cc1d0b668e08f",
+                "url": "https://api.github.com/repos/hitechcoding/spa-bundle/zipball/95b6b3032cfea903614e5b837ee0d8afecaea083",
+                "reference": "95b6b3032cfea903614e5b837ee0d8afecaea083",
                 "shasum": ""
             },
             "require": {
@@ -1435,7 +1435,7 @@
                 "source": "https://github.com/hitechcoding/spa-bundle/tree/master",
                 "issues": "https://github.com/hitechcoding/spa-bundle/issues"
             },
-            "time": "2019-04-18T19:49:42+00:00"
+            "time": "2019-04-19T15:22:11+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
