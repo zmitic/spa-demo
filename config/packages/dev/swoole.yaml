@@ -13,9 +13,9 @@ swoole:
         static:
             strategy: 'advanced'
             public_dir: '%kernel.project_dir%/public'
-        hmr: 'inotify'
+        hmr: 'auto'
         services:
-            debug_handler: true
+            debug_handler: false
             trust_all_proxies_handler: true
             cloudfront_proto_header_handler: true
             entity_manager_handler: true

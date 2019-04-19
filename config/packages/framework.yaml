@@ -11,8 +11,8 @@ framework:
 #        cookie_secure: auto
 #        cookie_samesite: lax
 
-    session:
-        storage_id: session.storage.php_bridge
+#    session:
+#        storage_id: session.storage.php_bridge
 
     #esi: true
     #fragments: true
