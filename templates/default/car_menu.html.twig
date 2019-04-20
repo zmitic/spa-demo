@@ -1,0 +1,30 @@
+<hr>
+<div class="row">
+    <div class="col-sm-3">
+        <h2>{{ car }}</h2>
+
+        <p>{{ car.description }}</p>
+    </div>
+
+    <div class="col-sm-9">
+{#        {% dump(app.request) %}#}
+
+        {% set route = app.request.attributes.get('_route') %}
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="navbar-nav">
+
+                <a class="nav-item nav-link disabled">{{ 'now'|date('H:i:s') }}</a>
+                <a href="{{ path('car_detailed', {'id': car.id}) }}" class="nav-item nav-link {{ route is same as ('car_detailed') ? 'active' }}">Detailed</a>
+                <a href="{{ path('car_reviews', {'id': car.id}) }}" class="nav-item nav-link {{ route in ['car_reviews', 'car_write_review'] ? 'active' }}">Reviews</a>
+            </div>
+
+        </nav>
+
+        {% filter outlet %}
+            menu outlet
+
+        {% endfilter %}
+    </div>
+</div>
+

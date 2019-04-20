@@ -1,16 +1,14 @@
+
+
 <a href="{{ path('car_write_review', {'id': car.id}) }}">Write review</a>
 
-
-{% filter outlet %}
 
 <ul class="list-unstyled">
     {% for review in reviews %}
         <li>
             <div class="card">
                 <div class="card-header">
-                    Quote {{ random() }}
-
-
+                    Now: {{ 'now'|date('H:i:s') }}
                 </div>
                 <div class="card-body">
                     {{ review.review }}
@@ -20,7 +18,7 @@
             </div>
         </li>
     {% endfor %}
-
-    qqq
+    {% filter outlet %}
+qqq
     {% endfilter %}
 </ul>

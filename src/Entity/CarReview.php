@@ -42,4 +42,9 @@ class CarReview
     {
         return $this->review;
     }
+
+    public function getCar(): Car
+    {
+        return $this->car;
+    }
 }

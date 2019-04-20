@@ -1,35 +1,19 @@
-{{ 'now'|date('H:i:s') }}
-<hr>
-<div class="row">
-    <div class="col-sm-3">
-        {{ car }}
+
+{% filter outlet %}
+
+    <div class="card">
+        <div class="card-header">
+            Description of {{ car }}
+        </div>
+        <div class="card-body">
+            {{ car.description }}
+        </div>
+        <div class="card-footer">
+            Rendered at {{ 'now'|date('H:i:s') }}
+        </div>
     </div>
 
-    <div class="col-sm-9">
-        <nav>
-            <a href="{{ path('car_detailed', {'id': car.id}) }}">Detailed</a>
-            <a href="{{ path('car_reviews', {'id': car.id}) }}">Reviews</a>
-        </nav>
+    Outlet of detailed:
 
-        {% filter outlet %}
-
-            <div class="card">
-                <div class="card-header">
-                    Description of {{ car }}
-                </div>
-                <div class="card-body">
-                    {{ car.description }}
-                </div>
-            </div>
-
-            <hr>
-            <hr>
-            <hr>
-            Outlet of detailed:
-
-
-
-        {% endfilter %}
-    </div>
-</div>
+{% endfilter %}
 

@@ -6,7 +6,6 @@ namespace App\Controller;
 
 use App\Entity\Car;
 use App\Entity\CarReview;
-use App\EventSubscriber\KernelReset\Resetter;
 use App\Repository\CarRepository;
 use App\Repository\CarReviewRepository;
 use HTC\SpaBundle\Annotation\Outlet;
@@ -33,9 +32,21 @@ class CarController extends AbstractController
     }
 
     /**
-     * @Route("/detailed/{id}", name="car_detailed")
+     * @Route("/car/{id}", name="car_menu")
      *
      * @Outlet(parent="default")
+     */
+    public function carMenu(Car $car, Request $request): Response
+    {
+        return $this->render('default/car_menu.html.twig', [
+            'car' => $car,
+        ]);
+    }
+
+    /**
+     * @Route("/car/{id}/detailed", name="car_detailed")
+     *
+     * @Outlet(parent="car_menu")
      */
     public function detailed(Car $car): Response
     {
@@ -45,9 +56,9 @@ class CarController extends AbstractController
     }
 
     /**
-     * @Route("/detailed/{id}/reviews", name="car_reviews")
+     * @Route("/car/{id}/reviews", name="car_reviews")
      *
-     * @Outlet(parent="car_detailed")
+     * @Outlet(parent="car_menu")
      */
     public function reviews(Car $car, CarReviewRepository $repository): Response
     {
@@ -64,7 +75,7 @@ class CarController extends AbstractController
     }
 
     /**
-     * @Route("/detailed/{id}/new_review", name="car_write_review")
+     * @Route("/car/{id}/reviews/new_review", name="car_write_review")
      *
      * @Outlet(parent="car_reviews")
      */
@@ -92,7 +103,7 @@ class CarController extends AbstractController
 
 
     /**
-     * @Route("/detailed/{id}/reviews/{review_id}", name="car_review_one")
+     * @Route("/car/{id}/reviews/{review_id}", name="car_review_one")
      *
      * @Entity(name="carReview", expr="repository.find(review_id)")
      *

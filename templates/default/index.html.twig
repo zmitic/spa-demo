@@ -17,6 +17,7 @@
                     {{ car }}
                     <a href="{{ path('car_detailed', {'id': car.id}) }}" class="fa fa-eye"></a>
                     <a href="{{ path('car_reviews', {'id': car.id}) }}" class="fa fa-sticky-note"></a>
+                    <a href="{{ path('car_write_review', {'id': car.id}) }}" class="fa fa-pencil"></a>
                 </li>
             {% endfor %}
         </ul>

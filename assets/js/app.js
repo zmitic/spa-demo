@@ -1,3 +1,6 @@
+const $ = require('jquery');
+
+
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -12,5 +15,11 @@ require('../css/app.scss');
 // const $ = require('jquery');
 
 require('../../vendor/htc/spa-bundle/src/Resources/public/js/htc_spa_jquery.js');
+
+$(document).on('click', '.navbar a.nav-item[href]', function () {
+    let $a = $(this);
+    $a.closest('.navbar-nav').find('a.active').removeClass('active');
+    $a.addClass('active');
+});
 
 
