@@ -4,6 +4,9 @@
 
 <a href="{{ path('car_reviews', {'id': review.car.id}) }}">Back</a>
 
+
+<a href="{{ path('car_review_one_comments', {'id': review.car.id, 'review_id': review.id}) }}" class="btn btn-danger">View comments</a>
+
 {% filter outlet %}
 
 {% endfilter %}

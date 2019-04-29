@@ -9,6 +9,7 @@ use App\Entity\CarReview;
 use App\Repository\CarRepository;
 use App\Repository\CarReviewRepository;
 use HTC\SpaBundle\Annotation\Outlet;
+use function random_int;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -109,10 +110,30 @@ class CarController extends AbstractController
      *
      * @Outlet(parent="car_reviews")
      */
-    public function review(CarReview $carReview): Response
+    public function reviewOne(CarReview $carReview): Response
     {
         return $this->render('default/review_one.html.twig', [
             'review' => $carReview,
+        ]);
+    }
+
+    /**
+     * @Route("/car/{id}/reviews/{review_id}/comments", name="car_review_one_comments")
+     *
+     * @Entity(name="carReview", expr="repository.find(review_id)")
+     *
+     * @Outlet(parent="car_review_one")
+     */
+    public function commentsOnReview(CarReview $carReview): Response
+    {
+        return $this->render('default/comments_on_review.html.twig', [
+            'review' => $carReview,
+            'comments' => [
+                random_int(1, 1000),
+                random_int(1, 1000),
+                random_int(1, 1000),
+                random_int(1, 1000),
+            ]
         ]);
     }
 }
